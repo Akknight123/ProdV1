@@ -29,7 +29,7 @@ mongoose.connect(process.env.MONGO_URI, {
 
 // define a simple route
 app.get('/', (req, res) => {
-    res.json({"message": "Welcome To Bike Solutions User Panel."});
+   res.send("Hello from prod v1...;)")
 });
 
 
