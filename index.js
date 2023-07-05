@@ -1,9 +1,14 @@
 const express = require('express');
+const cors = require('cors');
 require('dotenv').config();
 const port = process.env.PORT || 5000;
 
 // create express app
 const app = express();
+app.use(cors({
+    origin: '*',
+    allowedHeaders: 'X-Requested-With, Content-Type, auth-token',
+}));
 
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }))
