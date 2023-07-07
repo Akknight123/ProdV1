@@ -24,7 +24,7 @@ exports.create = (req,res) =>{
 
 exports.findOne= (req, res) => {
     console.log("query",req.query.id)
-    playListSchema.findById({'_id': "req.query.id"}).then(value=>{
+    playListSchema.findById({'_id': req.query.id}).then(value=>{
        
         if (value==null) {
            
