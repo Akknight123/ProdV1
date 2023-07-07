@@ -1,9 +1,9 @@
-
+require('dotenv').config();
 
 
 
 exports.login = (req,res) =>{
-if (req.body.userID == "123456" && req.body.password =="12345678") {
+if (req.body.userID == process.env.USER_ID && req.body.password ==process.env.PASSWORD) {
     res.status(200).json({
         status: true,
        
