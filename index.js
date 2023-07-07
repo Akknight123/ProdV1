@@ -42,6 +42,7 @@ require('./routes/video_route')(app)
 require('./routes/category_routes')(app)
 require('./routes/login_route')(app)
 require('./routes/playlist_routes')(app)
+require('./routes/dashboard')(app)
 
 // listen for requests
 app.listen(port, () => {
