@@ -3,7 +3,11 @@ require('dotenv').config();
 
 
 exports.login = (req,res) =>{
-if (req.body.userID == process.env.USER_ID && req.body.password ==process.env.PASSWORD) {
+    console.log("userID", req.body.userID)
+    console.log("password", req.body.password)
+    console.log("USER_ID", process.env.USER_ID)
+    console.log("PASSWORD", process.env.PASSWORD)
+if (req.body.userID == process.env.USER_ID && req.body.password == process.env.PASSWORD) {
     res.status(200).json({
         status: true,
        
