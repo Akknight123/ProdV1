@@ -22,7 +22,29 @@ exports.create = (req,res) =>{
     });
 }
 
-
+exports.findOne= (req, res) => {
+    console.log("query",req.query.id)
+    playListSchema.findById({'_id': "req.query.id"}).then(value=>{
+       
+        if (value==null) {
+           
+         res.status(200).json({
+            status:false,
+            message: "No Playlist found"
+         })
+        }else{
+            
+            res.status(200).json({
+                status:true,
+                data: value
+             }) 
+        }
+    }).catch(err=>{
+        res.status(500).send({
+            error: err.message || "Some error occurred while creating the Note."
+        }); 
+    })
+}
 
 exports.findAll = (req, res) => {
     playListSchema.find()
@@ -169,26 +191,7 @@ exports.addMultipleVideos = (req,res)=>{
    
 }
 
-exports.findOne = (req, res) => {
-    playListSchema.exists({uuid:req.query.uuid},function(err,results) {
-        if (err) {
-            res.send(err);
-        } else {
-            if (results) {
-                BS_order.find({uuid:req.query.uuid,status:req.query.status},function(err,datamodal) {
-                    if (err) {
-                        res.send(err);
-                    } else {
-                        res.send(datamodal);
-                    }})
-            } else {
-                res.send(results);
-            }
-        }
-    });
 
-   
-};
 
 exports.removeOne=(req,res)=>{
     playListSchema.findByIdAndRemove(req.query.uid)

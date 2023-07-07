@@ -2,6 +2,7 @@ module.exports = (app)=>{
     const category_controller=require('../controller/playList_controller');
 
     app.get('/getPlaylist', category_controller.findAll);
+    app.get('/getPlaylistByid', category_controller.findOne);
    
     app.post('/createPlaylist', category_controller.create);
     app.get("/removePlaylist",category_controller.removeOne)
