@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
+const { uploadLocal } = require("./middleware/multer_modules");
 
 // create express app
 const app = express();
@@ -53,3 +54,26 @@ app.listen(port, () => {
 
 
 
+
+app.post("/upload-img", uploadLocal.single("image"), async function (req, res) {
+    try {
+        //   var data = await uploadModules.uploadToDrive(req.file, process.env.FOLDERID);
+        var image = req.file
+        // console.log("file,image", image.stream);
+
+        res.status(200).json({
+            status: true,
+            message: "Profile image uploaded successfully!!",
+            data: image.path,
+            // name: req.body.name,
+            // upData: data
+        });
+    } catch (error) {
+        res.status(200).json({
+            status: false,
+            message: error.message || "Something went wrong!",
+
+        });
+    }
+
+});
