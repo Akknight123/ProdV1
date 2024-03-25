@@ -1,8 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
-const port = process.env.PORT || 3000;
-const { uploadLocal } = require("./middleware/multer_modules");
+const port = process.env.PORT || 5000;
 
 // create express app
 const app = express();
@@ -35,7 +34,7 @@ mongoose.connect(process.env.MONGO_URI, {
 
 // define a simple route
 app.get('/', (req, res) => {
-    res.send("Hello from prod v1.1...;)")
+    res.send("Hello from prod v1...;)")
 });
 
 
@@ -54,26 +53,3 @@ app.listen(port, () => {
 
 
 
-
-app.post("/upload-img", uploadLocal.single("image"), async function (req, res) {
-    try {
-        //   var data = await uploadModules.uploadToDrive(req.file, process.env.FOLDERID);
-        var image = req.file
-        // console.log("file,image", image.stream);
-
-        res.status(200).json({
-            status: true,
-            message: "Profile image uploaded successfully!!",
-            data: image.path,
-            // name: req.body.name,
-            // upData: data
-        });
-    } catch (error) {
-        res.status(200).json({
-            status: false,
-            message: error.message || "Something went wrong!",
-
-        });
-    }
-
-});
